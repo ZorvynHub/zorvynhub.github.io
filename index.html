@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zorvyn Script Hub</title>
+  <meta name="description" content="Zorvyn Script Hub — a Roblox exploit script community.">
   <link rel="icon" href="/a/brand_transparent_tiny.png" type="image/png">
   <style>
     :root {
-      --bg: #0a0a0f;
-      --bg-subtle: #12121a;
-      --fg: #e8e8f0;
-      --muted: #6b6b80;
-      --accent: #00d4aa;
-      --accent-dim: rgba(0, 212, 170, 0.15);
-      --card: #1a1a24;
-      --border: #2a2a3a;
+      --bg: #0b0d10;
+      --surface: #14171c;
+      --fg: #e7e9ee;
+      --muted: #8a90a0;
+      --accent: #35d6a4;
+      --border: #232830;
     }
 
     * {
@@ -22,10 +21,15 @@
     }
 
     html {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--fg);
-      line-height: 1.6;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
     }
 
     a {
@@ -39,207 +43,185 @@
 
     img {
       max-width: 100%;
-      height: auto;
+      display: block;
     }
 
-    /* Navigation */
-    nav {
-      position: fixed;
+    /* ---------- Nav ---------- */
+    .nav {
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1rem 2rem;
-      background: rgba(10, 10, 15, 0.8);
-      backdrop-filter: blur(10px);
+      z-index: 20;
+      background: rgba(11, 13, 16, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .nav-container {
-      max-width: 1200px;
+    .nav-inner {
+      max-width: 1120px;
       margin: 0 auto;
+      padding: 0.85rem 1.5rem;
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      justify-content: space-between;
+      gap: 1rem;
     }
 
-    .nav-text {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--fg);
     }
 
-    .nav-text span {
-      color: var(--muted);
-      font-size: 0.85rem;
+    .brand img {
+      height: 26px;
+      width: auto;
     }
 
     .nav-links {
       display: flex;
-      gap: 1rem;
+      align-items: center;
+      gap: 1.25rem;
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    .nav-links li a {
+    .nav-links a {
       color: var(--muted);
-      font-size: 0.85rem;
-      transition: color 0.2s;
+      font-size: 0.9rem;
     }
 
-    .nav-links li a:hover {
+    .nav-links a:hover {
       color: var(--fg);
+      text-decoration: none;
     }
 
-    /* Brand icon in nav - smaller */
-    .nav-brand {
-      height: 30px;
-      width: auto;
-      filter: none;
-    }
-
-    /* Hero */
+    /* ---------- Hero ---------- */
     .hero {
-      min-height: 100vh;
-      display: flex;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
       align-items: center;
-      justify-content: center;
-      padding: 8rem 2rem 2rem;
+      gap: 2.5rem;
     }
 
-    .hero-content {
-      max-width: 900px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
+    .hero-copy h1 {
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height: 1.1;
+      margin: 0 0 0.75rem;
       letter-spacing: -0.02em;
     }
 
-    .hero p {
+    .hero-copy p {
+      margin: 0 0 1.5rem;
+      max-width: 34rem;
       color: var(--muted);
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
+      font-size: 1.05rem;
     }
 
-    .brand-image {
-      margin: 1rem auto 0;
-      max-height: 50px;
-      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+    .button {
+      display: inline-block;
+      padding: 0.7rem 1.4rem;
+      background: var(--accent);
+      color: #07130f;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border-radius: 6px;
+      transition: background 0.15s ease;
     }
 
-    /* Features */
+    .button:hover {
+      background: #4ce7b8;
+      text-decoration: none;
+    }
+
+    .hero-art {
+      justify-self: center;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .hero-art img {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
+    }
+
+    /* ---------- Features ---------- */
     .features {
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 0 2rem;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 3.5rem;
     }
 
     .features h2 {
-      text-align: center;
-      margin-bottom: 3rem;
-      color: var(--fg);
+      font-size: 1.35rem;
+      margin: 0 0 1.25rem;
+      letter-spacing: -0.01em;
     }
 
     .feature-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
     }
 
     .feature-card {
-      background: var(--card);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 2rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      padding: 1.25rem;
     }
 
     .feature-card h3 {
-      margin-top: 0;
-      margin-bottom: 0.5rem;
+      margin: 0 0 0.4rem;
+      font-size: 1rem;
     }
 
-    /* CTA */
-    .cta {
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 0 2rem;
-      text-align: center;
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
     }
 
-    .cta-button {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      background: var(--accent);
-      color: var(--bg);
-      font-weight: 600;
-      border-radius: 4px;
-      transition: background 0.2s;
+    /* ---------- Footer ---------- */
+    .footer {
+      border-top: 1px solid var(--border);
     }
 
-    .cta-button:hover {
-      background: #00f0bb;
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.85rem;
     }
 
-    /* Key Page Specific */
-    .key-container {
-      max-width: 600px;
-      margin: 4rem auto;
-      padding: 2rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      text-align: center;
+    /* ---------- Responsive ---------- */
+    @media (max-width: 720px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 2.5rem;
+        text-align: left;
+      }
+
+      .hero-art {
+        max-width: 190px;
+        justify-self: start;
+        order: -1;
+      }
     }
 
-    .key-value {
-      font-family: "Courier New", monospace;
-      font-size: 1.5rem;
-      word-break: break-all;
-      background: var(--bg-subtle);
-      padding: 0.75rem 1rem;
-      border-radius: 4px;
-      margin: 1rem 0;
-      display: inline-block;
-    }
-
-    .expires-info {
-      margin: 1.5rem 0;
-      padding: 1rem;
-      background: var(--bg-subtle);
-      border-radius: 4px;
-      font-size: 0.95rem;
-    }
-
-    .expires-info.expired {
-      background: rgba(255, 0, 0, 0.1);
-      border: 1px solid rgba(255, 0, 0, 0.3);
-    }
-
-    .discord-link {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.75rem 1.5rem;
-      background: var(--accent);
-      color: var(--bg);
-      border-radius: 4px;
-      font-weight: 500;
-    }
-
-    .discord-link:hover {
-      background: #00f0bb;
-    }
-
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       * {
         transition: none !important;
@@ -249,47 +231,55 @@
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-container">
-      <div class="nav-text">
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <img src="/a/brand_transparent.png" alt="">
         <span>Zorvyn Script Hub</span>
-      </div>
+      </a>
       <ul class="nav-links">
         <li><a href="/">Home</a></li>
-        <li><a href="https://discord.gg/pZc8u2dRRW" target="_blank" rel="noopener">Get Key on Discord / Discord Server</a></li>
+        <li><a href="https://discord.gg/pZc8u2dRRW" target="_blank" rel="noopener">Discord</a></li>
       </ul>
-      <img src="/a/brand_transparent.png" alt="Zorvyn Script Hub" class="nav-brand">
     </div>
-  </nav>
+  </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Zorvyn Script Hub</h1>
-      <p>Roblox Exploit Script Community</p>
-      <img src="/a/brand_transparent.png" alt="Zorvyn Script Hub Brand" class="brand-image">
-      <a class="cta-button" href="https://discord.gg/pZc8u2dRRW" target="_blank" rel="noopener">Discord Join</a>
-    </div>
-  </section>
-
-  <section class="features">
-    <div class="features">
-      <h2>Why Choose Zorvyn Script Hub?</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h3>Regular Updates</h3>
-          <p>Scripts are updated regularly to stay compatible with the latest Roblox changes.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Discord Community</h3>
-          <p>Join our Discord for support, discussion, and exclusive scripts.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Free Scripts</h3>
-          <p>Access a wide variety of exploit scripts completely free.</p>
-        </div>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Zorvyn Script Hub</h1>
+        <p>A Roblox exploit script community. Get scripts, share setups, and hang out with other users in our Discord.</p>
+        <a class="button" href="https://discord.gg/pZc8u2dRRW" target="_blank" rel="noopener">Join our Discord</a>
       </div>
-    </div>
-  </section>
+      <div class="hero-art">
+        <img src="/a/brand_transparent.png" alt="Zorvyn Script Hub logo">
+      </div>
+    </section>
 
-  </body>
+    <section class="features">
+      <h2>Why join</h2>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Regular updates</h3>
+          <p>Scripts are kept up to date as Roblox changes, so things keep working.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Active community</h3>
+          <p>Ask for help, report issues, and talk with other members in Discord.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Free to use</h3>
+          <p>All scripts in the hub are available at no cost to the community.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2026 Zorvyn Script Hub</span>
+      <a href="https://discord.gg/pZc8u2dRRW" target="_blank" rel="noopener">discord.gg/pZc8u2dRRW</a>
+    </div>
+  </footer>
+</body>
 </html>
