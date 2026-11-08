@@ -58,18 +58,24 @@
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 1.5rem;
     }
 
-    .logo {
-      height: 40px;
-      width: auto;
+    .nav-text {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-text span {
+      color: var(--muted);
+      font-size: 0.85rem;
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1rem;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -77,11 +83,19 @@
 
     .nav-links li a {
       color: var(--muted);
+      font-size: 0.85rem;
       transition: color 0.2s;
     }
 
     .nav-links li a:hover {
       color: var(--fg);
+    }
+
+    /* Brand icon in nav - smaller */
+    .nav-brand {
+      height: 30px;
+      width: auto;
+      filter: none;
     }
 
     /* Hero */
@@ -112,8 +126,9 @@
     }
 
     .brand-image {
-      margin: 2rem auto 0;
-      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+      margin: 1rem auto 0;
+      max-height: 50px;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
     }
 
     /* Features */
@@ -236,11 +251,14 @@
 <body>
   <nav>
     <div class="nav-container">
-      <img src="/a/brand_transparent.png" alt="Zorvyn Script Hub" class="logo">
+      <div class="nav-text">
+        <span>Zorvyn Script Hub</span>
+      </div>
       <ul class="nav-links">
         <li><a href="/">Home</a></li>
-        <li><a href="/key.html">Key System</a></li>
+        <li><a href="https://discord.gg/pZc8u2dRRW" target="_blank" rel="noopener">Get Key on Discord / Discord Server</a></li>
       </ul>
+      <img src="/a/brand_transparent.png" alt="Zorvyn Script Hub" class="nav-brand">
     </div>
   </nav>
 
@@ -273,8 +291,5 @@
     </div>
   </section>
 
-  <section class="cta">
-    <a href="/key.html" class="cta-button">Get Your Key</a>
-  </section>
-</body>
+  </body>
 </html>
