@@ -1,11 +1,280 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Zorvyn Hub</title>
-  </head>
-  <body>
-    <h1>Zorvyn Hub</h1>
-    <hr>
-    <p>Under Construction...</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zorvyn Script Hub</title>
+  <link rel="icon" href="/a/brand_transparent_tiny.png" type="image/png">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-subtle: #12121a;
+      --fg: #e8e8f0;
+      --muted: #6b6b80;
+      --accent: #00d4aa;
+      --accent-dim: rgba(0, 212, 170, 0.15);
+      --card: #1a1a24;
+      --border: #2a2a3a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links li a:hover {
+      color: var(--fg);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 2rem;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .brand-image {
+      margin: 2rem auto 0;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+    }
+
+    /* Features */
+    .features {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    .features h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--fg);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .feature-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    /* CTA */
+    .cta {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .cta-button:hover {
+      background: #00f0bb;
+    }
+
+    /* Key Page Specific */
+    .key-container {
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .key-value {
+      font-family: "Courier New", monospace;
+      font-size: 1.5rem;
+      word-break: break-all;
+      background: var(--bg-subtle);
+      padding: 0.75rem 1rem;
+      border-radius: 4px;
+      margin: 1rem 0;
+      display: inline-block;
+    }
+
+    .expires-info {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: var(--bg-subtle);
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+
+    .expires-info.expired {
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid rgba(255, 0, 0, 0.3);
+    }
+
+    .discord-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .discord-link:hover {
+      background: #00f0bb;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <img src="/a/brand_transparent.png" alt="Zorvyn Script Hub" class="logo">
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/key.html">Key System</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Zorvyn Script Hub</h1>
+      <p>Roblox Exploit Script Community</p>
+      <img src="/a/brand_transparent.png" alt="Zorvyn Script Hub Brand" class="brand-image">
+      <a class="cta-button" href="/key.html">Get Key</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="features">
+      <h2>Why Choose Zorvyn Script Hub?</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Regular Updates</h3>
+          <p>Scripts are updated regularly to stay compatible with the latest Roblox changes.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Discord Community</h3>
+          <p>Join our Discord for support, discussion, and exclusive scripts.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Free Scripts</h3>
+          <p>Access a wide variety of exploit scripts completely free.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <a href="/key.html" class="cta-button">Get Your Key</a>
+  </section>
+</body>
 </html>
